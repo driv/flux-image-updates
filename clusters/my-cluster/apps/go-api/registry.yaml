@@ -7,3 +7,14 @@ metadata:
 spec:
   image: driv/buildpack-playground-golang-api
   interval: 5m0s
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImagePolicy
+metadata:
+  name: buildpack-playground-golang-api
+spec:
+  imageRepositoryRef:
+    name: buildpack-playground-golang-api
+  policy:
+    alphabetical:
+      order: asc
