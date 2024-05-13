@@ -1,0 +1,23 @@
+apiVersion: kpack.io/v1alpha2
+kind: Builder
+metadata:
+  name: generic-builder
+  namespace: kpack-builders
+spec:
+  tag: driv/generic-builder
+  order:
+  - group:
+    - id: paketo-buildpacks/go
+  - group:
+    - id: paketo-buildpacks/java
+  - group:
+    - id: paketo-buildpacks/dotnet-core
+  - group:
+    - id: paketo-buildpacks/nodejs
+  serviceAccountName: kpack-service-account
+  stack:
+    kind: ClusterStack
+    name: base
+  store:
+    kind: ClusterStore
+    name: default

@@ -1,0 +1,21 @@
+apiVersion: kpack.io/v1alpha2
+kind: Image
+metadata:
+  name: golang-apiserver
+  namespace: kpack-builders
+spec:
+  builder:
+    kind: Builder
+    name: my-builder
+  cache:
+    volume:
+      size: 2G
+  failedBuildHistoryLimit: 10
+  imageTaggingStrategy: BuildNumber
+  serviceAccountName: kpack-service-account
+  source:
+    git:
+      revision: main
+      url: https://github.com/driv/playground-golang-api.git
+  successBuildHistoryLimit: 10
+  tag: driv/buildpack-playground-golang-api
