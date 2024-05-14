@@ -6,7 +6,7 @@ metadata:
 spec:
   builder:
     kind: Builder
-    name: my-builder
+    name: generic-builder
   cache:
     volume:
       size: 2G
