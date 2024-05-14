@@ -11,6 +11,7 @@ spec:
     volume:
       size: 2G
   failedBuildHistoryLimit: 10
+  imageTaggingStrategy: None
   serviceAccountName: kpack-service-account
   source:
     git:
