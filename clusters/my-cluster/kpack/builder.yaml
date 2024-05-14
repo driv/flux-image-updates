@@ -50,5 +50,6 @@ metadata:
   namespace: kpack-builders
 secrets:
 - name: registry-credentials
+- name: git-credentials
 imagePullSecrets:
 - name: registry-credentials
