@@ -39,9 +39,30 @@ metadata:
 spec:
   id: "io.buildpacks.stacks.jammy"
   buildImage:
-    image: "paketobuildpacks/build-jammy-base:0.1.113"
+    image: "paketobuildpacks/build-jammy-base:0.1.113" # {"$imagepolicy": "flux-system:paketobuildpacks_build-jammy-base"}
   runImage:
     image: "paketobuildpacks/run-jammy-base:0.1.113"
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImageRepository
+metadata:
+  name: "paketobuildpacks_build-jammy-base"
+  namespace: flux-system
+spec:
+  image: "paketobuildpacks/build-jammy-base"
+  interval: 5m0s
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImagePolicy
+metadata:
+  name: "paketobuildpacks_build-jammy-base"
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: "paketobuildpacks_build-jammy-base"
+  policy:
+    semver:
+      range: '>0.1.0'
 ---
 apiVersion: v1
 kind: ServiceAccount
