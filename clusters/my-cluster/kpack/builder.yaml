@@ -42,7 +42,7 @@ spec:
   buildImage:
     image: "paketobuildpacks/build-jammy-base:0.1.115" # {"$imagepolicy": "flux-system:build-jammy-base"}
   runImage:
-    image: "paketobuildpacks/run-jammy-base:0.1.113" # {"$imagepolicy": "flux-system:run-jammy-base"}
+    image: "paketobuildpacks/run-jammy-base:0.1.115" # {"$imagepolicy": "flux-system:run-jammy-base"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImageRepository
