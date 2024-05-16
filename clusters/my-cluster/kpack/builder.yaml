@@ -54,6 +54,15 @@ spec:
   interval: 5m0s
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImageRepository
+metadata:
+  name: "run-jammy-base"
+  namespace: flux-system
+spec:
+  image: "paketobuildpacks/run-jammy-base"
+  interval: 5m0s
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImagePolicy
 metadata:
   name: "build-jammy-base"
@@ -61,6 +70,18 @@ metadata:
 spec:
   imageRepositoryRef:
     name: "build-jammy-base"
+  policy:
+    semver:
+      range: '>0.1.0'
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImagePolicy
+metadata:
+  name: "run-jammy-base"
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: "run-jammy-base"
   policy:
     semver:
       range: '>0.1.0'
