@@ -1,0 +1,18 @@
+apiVersion: kpack.io/v1alpha2
+kind: Image
+metadata:
+  name: java-apiserver
+  namespace: kpack-builders
+spec:
+  builder:
+    kind: Builder
+    name: generic-builder
+  cache:
+    volume:
+      size: 2G
+  serviceAccountName: kpack-service-account
+  source:
+    git:
+      revision: main
+      url: https://github.com/driv/playground-java-api.git
+  tag: driv/buildpack-playground-java-api
