@@ -1,0 +1,23 @@
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImageRepository
+metadata:
+  name: buildpack-playground-java-api
+  namespace: flux-system
+spec:
+  image: driv/buildpack-playground-java-api
+  interval: 5m0s
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImagePolicy
+metadata:
+  name: buildpack-playground-java-api
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: buildpack-playground-java-api
+  filterTags:
+    pattern: '^b.*'
+  policy:
+    alphabetical:
+      order: asc
