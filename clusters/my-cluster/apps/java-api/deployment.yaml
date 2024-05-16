@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: java-api
-          image: driv/buildpack-playground-java-api # {"$imagepolicy": "flux-system:buildpack-playground-java-api"}
+          image: driv/buildpack-playground-java-api:b1.20240516.174612 # {"$imagepolicy": "flux-system:buildpack-playground-java-api"}
           imagePullPolicy: IfNotPresent
           ports:
             - name: http
