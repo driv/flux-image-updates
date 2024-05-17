@@ -6,14 +6,14 @@ metadata:
 spec:
   selector:
     matchLabels:
-      app: go-api
+      app: golang-api
   template:
     metadata:
       labels:
-        app: go-api
+        app: golang-api
     spec:
       containers:
-        - name: go-api
+        - name: golang-api
           image: driv/buildpack-playground-golang-api:b6.20240516.174124 # {"$imagepolicy": "flux-system:buildpack-playground-golang-api"}
           imagePullPolicy: IfNotPresent
           ports:
