@@ -10,11 +10,9 @@ spec:
   cache:
     volume:
       size: 2G
-  failedBuildHistoryLimit: 10
   serviceAccountName: kpack-service-account
   source:
     git:
       revision: main
       url: https://github.com/driv/playground-golang-api.git
-  successBuildHistoryLimit: 10
   tag: driv/buildpack-playground-golang-api
