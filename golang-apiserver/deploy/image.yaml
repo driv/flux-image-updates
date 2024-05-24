@@ -1,19 +1,21 @@
 apiVersion: kpack.io/v1alpha2
 kind: Image
 metadata:
+  annotations:
   name: golang-apiserver
-  namespace: kpack-builders
+  namespace: default
 spec:
   builder:
     kind: Builder
-    name: generic-builder
+    name: my-builder
   cache:
     volume:
       size: 2G
+  imageTaggingStrategy: BuildNumber
   serviceAccountName: kpack-service-account
   source:
     git:
       revision: main
-      url: https://github.com/driv/flux-image-updates.git
-    subPath: golang-apiserver
+      url: https://github.com/driv/playground-golang-api.git
+  successBuildHistoryLimit: 10
   tag: driv/buildpack-playground-golang-api
