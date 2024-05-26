@@ -7,8 +7,8 @@ import (
 	"runtime/debug"
 	"strings"
 
-	"github.com/driv/golang-apiserver/internal/response"
-	"github.com/driv/golang-apiserver/internal/validator"
+	"golang-apiserver/internal/response"
+	"golang-apiserver/internal/validator"
 )
 
 func (app *application) reportServerError(r *http.Request, err error) {

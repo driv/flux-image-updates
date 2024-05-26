@@ -15,7 +15,6 @@ func (app *application) routes() http.Handler {
 	mux.Use(app.recoverPanic)
 
 	mux.HandleFunc("/status", app.status, "GET")
-	mux.HandleFunc("/", app.root, "GET")
 
 	return mux
 }

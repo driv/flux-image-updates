@@ -101,10 +101,6 @@ Content-Length: 23
 <td>Contains various helper packages used by the application.</td>
 </tr>
 <tr>
-<td><code>↳ internal/database/</code></td>
-<td>Contains your database-related code (setup, connection and queries).</td>
-</tr>
-<tr>
 <td><code>↳ internal/env</code></td>
 <td>Contains helper functions for reading configuration settings from environment variables.</td>
 </tr>
@@ -344,61 +340,11 @@ input.Validator.AddError("Passwords do not match")
 input.Validator.CheckField(validator.Between(input.Age, 18, 30), "Age", "Age must between 18 and 30")
 </pre>
 <p>Feel free to add your own helper functions to the <code>internal/validator/helpers.go</code> file as necessary for your application.</p>
-<h2>Working with the database</h2>
-<p>This codebase is set up to use SQLite3 with the <a href="https://github.com/mattn/go-sqlite3">mattn/go-sqlite3</a> driver. The data is stored in a <code>db.sqlite</code> file in the project root, but you can change this by setting a different DSN (datasource name) in the <code>DB_DSN</code> environment variable , or by adapting the default value in <code>run()</code>.</p>
-<p>The codebase is also configured to use <a href="https://github.com/jmoiron/sqlx">jmoiron/sqlx</a>, so you have access to the whole range of sqlx extensions as well as the standard library <code>Exec()</code>, <code>Query()</code> and <code>QueryRow()</code> methods .</p>
-<p>The database is available to your handlers, middleware and helpers via the <code>application</code> struct. If you want, you can access the database and carry out queries directly. For example:</p>
-<pre>
-func (app *application) yourHandler(w http.ResponseWriter, r *http.Request) {
-    ...
-
-    _, err := app.db.Exec("INSERT INTO people (name, age) VALUES ($1, $2)", "Alice", 28)
-    if err != nil {
-        app.serverError(w, r, err)
-        return
-    }
-    
-    ...
-}
-</pre>
-<p>Generally though, it's recommended to isolate your database logic in the <code>internal/database</code> package and extend the <code>DB</code> type to include your own methods. For example, you could create a <code>internal/database/people.go</code> file containing code like:</p>
-<pre>
-type Person struct {
-    ID    int    `db:"id"`
-    Name  string `db:"name"`
-    Age   int    `db:"age"`
-}
-
-func (db *DB) NewPerson(name string, age int) error {
-    _, err := db.Exec("INSERT INTO people (name, age) VALUES ($1, $2)", name, age)
-    return err
-}
-
-func (db *DB) GetPerson(id int) (Person, error) {
-    var person Person
-    err := db.Get(&amp;person, "SELECT * FROM people WHERE id = $1", id)
-    return person, err
-}
-</pre>
-<p>And then call this from your handlers:</p>
-<pre>
-func (app *application) yourHandler(w http.ResponseWriter, r *http.Request) {
-    ...
-
-    err := app.db.NewPerson("Alice", 28)
-    if err != nil {
-        app.serverError(w, r, err)
-        return
-    }
-    
-    ...
-}
-</pre>
 <h2>Logging</h2>
-<p>Leveled logging is supported using the <a href="https://pkg.go.dev/log/slog">slog</a> and <a href="https://github.com/lmittmann/tint">tint</a> packages.</p>
+<p>Leveled logging is supported using the <a href="https://pkg.go.dev/log/slog">slog</a> package.</p>
 <p>By default, a logger is initialized in the <code>main()</code> function. This logger writes all log messages above <code>Debug</code> level to <code>os.Stdout</code>.</p>
 <pre>
-logger := slog.New(tint.NewHandler(os.Stdout, &amp;tint.Options{Level: slog.LevelDebug}))
+logger := slog.New(slog.NewTextHandler(os.Stdout, &amp;slog.HandlerOptions{Level: slog.LevelDebug}))
 </pre>
 <p>Feel free to customize this further as necessary.</p>
 <p>Also note: Any messages that are automatically logged by the Go <code>http.Server</code> are output at the <code>Warn</code> level.</p>
@@ -434,7 +380,7 @@ func Get() string {
 }
 </pre>
 <h2>Changing the module path</h2>
-<p>The module path is currently set to <code>github.com/driv/golang-apiserver</code>. If you want to change this please find and replace all instances of <code>github.com/driv/golang-apiserver</code> in the codebase with your own module path.</p>
+<p>The module path is currently set to <code>golang-apiserver</code>. If you want to change this please find and replace all instances of <code>golang-apiserver</code> in the codebase with your own module path.</p>
 </div>
 <!--------------------------------------------------------------------
 Admin
