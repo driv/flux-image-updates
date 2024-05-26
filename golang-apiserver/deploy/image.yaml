@@ -16,6 +16,6 @@ spec:
   source:
     git:
       revision: main
-      url: ssh://git@github.com/driv/playground-golang-api.git
-  successBuildHistoryLimit: 10
+      url: ssh://git@github.com/driv/flux-image-updates.git
+    subPath: golang-apiserver
   tag: driv/buildpack-playground-golang-api
