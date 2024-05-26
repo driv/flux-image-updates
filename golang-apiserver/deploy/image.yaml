@@ -16,6 +16,6 @@ spec:
   source:
     git:
       revision: main
-      url: https://github.com/driv/playground-golang-api.git
+      url: ssh://git@github.com/driv/playground-golang-api.git
   successBuildHistoryLimit: 10
   tag: driv/buildpack-playground-golang-api

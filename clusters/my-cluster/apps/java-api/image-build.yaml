@@ -14,6 +14,6 @@ spec:
   source:
     git:
       revision: main
-      url: https://github.com/driv/flux-image-updates.git
+      url: ssh://git@github.com/driv/flux-image-updates.git
     subPath: java-apiserver
   tag: driv/buildpack-playground-java-api
