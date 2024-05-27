@@ -13,7 +13,7 @@ spec:
   serviceAccountName: kpack-service-account
   source:
     git:
-      revision: main
+      revision: apps
       url: ssh://git@github.com/driv/flux-image-updates.git
     subPath: java-apiserver
   tag: driv/buildpack-playground-java-api
