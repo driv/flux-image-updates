@@ -39,10 +39,12 @@ kubectl apply -f gotk-secret.yaml
 Use the `identity.pub` public key from the secret as a deployment key with write access for your repo. Do not push the secret to git.
 
 # Kpack secrets
+Dockerhub and GitHub access is needed.
+
 Create a token with read/write access. https://hub.docker.com/settings/security
 
-Replace `<username>` with your DockerHub username and <token> with your generated token, and apply the secret. Do not push the secret to git.
-You can use the private key from `gotk-secret.yaml` or create a new one (it only needs read access).
+Replace `<username>` with your DockerHub username and `<token>` with your generated token, and apply the secret. Do not push the secret to git.
+
 ```
 apiVersion: v1
 kind: Secret
@@ -55,7 +57,10 @@ type: kubernetes.io/basic-auth
 stringData:
   username: <username>
   password: <token>
----
+```
+
+For `git-credentials` You can use the private key from `gotk-secret.yaml` or create a new one (it only needs read access).
+```
 apiVersion: v1
 kind: Secret
 metadata:
