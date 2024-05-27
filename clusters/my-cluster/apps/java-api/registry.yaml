@@ -17,7 +17,8 @@ spec:
   imageRepositoryRef:
     name: buildpack-playground-java-api
   filterTags:
-    pattern: '^b.*'
+    pattern: '^b(?P<buildnumber>\d+)\.(?P<date>\d+)\.(?P<time>\d+)$'
+    extract: "$date$time$buildnumber"
   policy:
     alphabetical:
       order: asc
