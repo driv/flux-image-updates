@@ -17,7 +17,8 @@ spec:
   imageRepositoryRef:
     name: buildpack-playground-golang-api
   filterTags:
-    pattern: '^b.*'
+    pattern: '^b(?P<buildnumber>\n+)\.(?P<date>\n+)\.(?P<time>\n+)$'
+    extract: "$date$time$buildnumber"
   policy:
     alphabetical:
       order: asc
