@@ -75,3 +75,9 @@ stringData:
     <your private key>
     -----END PRIVATE KEY-----
 ```
+
+# Update the applications.
+
+Both applications have an `Image` which is using the `apps` branch to track changes. FluxCD commits into the main branch and it creates an infinite loop of build and deployments.
+
+Any change on the `apps` branch will trigger a build and a re-deploy.
