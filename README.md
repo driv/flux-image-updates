@@ -1,4 +1,4 @@
-Since FluxCD pushes updates to the repo you need to fork this repo and mofify a few things before getting started.
+Since FluxCD pushes updates to the repo you need to fork this repo and modify a few things before getting started.
 
 ### Fix users
 ```
