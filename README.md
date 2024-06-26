@@ -15,7 +15,7 @@ git push
 # Cluster
 You can use any cluster you have available
 ```
-kind cluster create --name=kind-fluxcd-buildpacks
+kind create cluster --name kind-fluxcd-buildpacks
 ```
 
 # FluxCD bootstrap
